@@ -8,6 +8,15 @@ use\Illuminate\Http\Request;
 
 class ProdukController extends Controller
 {
+    public function index(){
+        $produk = Produk::all();
+        return response()->json($produk);
+    } 
+
+    public function show($id){
+        $produk = Produk::find($id);
+        return response()->json($produk);
+    }
     public function post(Request $request){
         $this->validate($request, [
             'nama' => 'required|string',
