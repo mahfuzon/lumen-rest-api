@@ -53,4 +53,15 @@ class ProdukController extends Controller
         $produk->save();
         return response()->json($produk);
     }
+
+    public function destroy($id){
+    // mengecek apakah id yang diinputkan terdapat di dalam database 
+    // jika tidak maka akan muncul pesan eror
+    if(!$produk){
+        return response()->json(['message'=>'Produk nit found'], 404);
+    }
+
+        $produk = Produk::find($id);
+        return response()->json(['message'=>'Produk deleted !!!']);
+    }
 }
