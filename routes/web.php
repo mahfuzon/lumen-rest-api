@@ -18,3 +18,4 @@ $router->get('/', function () use ($router) {
 $router->get('/produk', 'ProdukController@index');
 $router->get('/produk/{id}', 'ProdukController@show');
 $router->post('/produk', 'ProdukController@post');
+$router->put('/produk/{id}', 'ProdukController@update');

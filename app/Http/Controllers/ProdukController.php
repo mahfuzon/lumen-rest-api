@@ -25,8 +25,32 @@ class ProdukController extends Controller
             'kondisi' => 'required|in:baru,lama',
             'deskripsi' => 'string',
         ]);
+
         $data = $request->all();
         $produk = Produk::create($data);
+        return response()->json($produk);
+    }
+
+    public function update(Request $request, $id){
+    // mengecek apakah id yang diinputkan terdapat di dalam database 
+    // jika tidak maka akan muncul pesan eror
+        if(!$produk){
+            return response()->json(['message'=>'Produk nit found'], 404);
+        }
+
+        // Validasi
+        $this->validate($request, [
+            'nama' => 'required|string',
+            'harga' => 'required|integer',
+            'warna' => 'required|string',
+            'kondisi' => 'required|in:baru,lama',
+            'deskripsi' => 'string',
+        ]);
+
+        $produk = Produk::find($id);
+        $data = $request->all();
+        $produk->fill($data);
+        $produk->save();
         return response()->json($produk);
     }
 }
