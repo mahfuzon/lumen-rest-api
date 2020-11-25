@@ -8,6 +8,11 @@ use\Illuminate\Http\Request;
 
 class ProdukController extends Controller
 {
+    // memasang middleware pada contructor 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index(){
         $produk = Produk::all();
         return response()->json($produk);

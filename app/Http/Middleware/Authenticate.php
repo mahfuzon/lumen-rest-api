@@ -33,6 +33,7 @@ class Authenticate
      * @param  string|null  $guard
      * @return mixed
      */
+    // method handler berfungsi jikalau kita melakukan request maka harus melewati middleware ini terlebih dahulu
     public function handle($request, Closure $next, $guard = null)
     {
         if ($this->auth->guard($guard)->guest()) {
